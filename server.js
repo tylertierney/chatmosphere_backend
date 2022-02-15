@@ -3,11 +3,15 @@ const http = require("http");
 // const cors = require("cors");
 const socketIo = require("socket.io");
 
-const port = process.env.PORT || 6066;
+const PORT = process.env.PORT || 6066;
 // const index = require("./routes/index");
 
 const app = express();
-// app.use(index);
+app.get("/", (req, res) => {
+  res.send({ response: "I am alive" }).status(200);
+});
+
+app.listen(9000, () => console.log("Server Running On Port: PORT"));
 
 const server = http.createServer();
 
@@ -31,4 +35,4 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(port, () => console.log(`listening on port ${port}`));
+server.listen(PORT, () => console.log(`listening on port ${PORT}`));
